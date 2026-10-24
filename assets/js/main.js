@@ -278,8 +278,9 @@
   const STEP = 1.45;
   const NOSNAP = /[?&]nosnap(&|=|$)/.test(location.search); // só para testes
   const mm = gsap.matchMedia();
-  mm.add({ mobile: '(max-width: 760px)', desktop: '(min-width: 761px)' }, ctx => {
-    const { mobile } = ctx.conditions;
+  // computador: a seção trava e as salas abrem pelo arco conforme a rolagem
+  mm.add('(min-width: 761px)', () => {
+    const mobile = false;
     // A próxima sala nasce dentro do arco da foto (como uma cortina subindo) e depois toma a tela.
     const geo = layer => {
       const a = $('.tour-arch', layer), inner = $('.tour-inner', layer);
@@ -333,6 +334,17 @@
     });
     mapBtns[0].classList.add('is-active');
     return () => { gsap.set(layers, { clearProps: 'clipPath,zIndex' }); };
+  });
+
+  // celular: sequência vertical, só rolar para baixo; cada foto abre no arco ao aparecer na tela
+  mm.add('(max-width: 760px)', () => {
+    layers.forEach(layer => {
+      const img = $('.tour-arch img', layer), txt = $('.tour-text', layer);
+      gsap.timeline({ scrollTrigger: { trigger: layer, start: 'top 82%', once: true } })
+        .fromTo(img, { clipPath: 'inset(100% 0% 0% 0%)', scale: 1.15 }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.1, ease: 'power3.inOut' })
+        .to(img, { scale: 1, duration: 1.4, ease: 'power2.out' }, 0)
+        .fromTo(txt, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'power3.out' }, .35);
+    });
   });
 
   /* ---------------- CONDOMÍNIO: rolagem horizontal (computador) ---------------- */
