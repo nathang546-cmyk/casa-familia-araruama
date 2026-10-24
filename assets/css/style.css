@@ -121,19 +121,18 @@ p { margin: 0; }
 .intro-badge .i { color: var(--gold); width: 22px; height: 22px; }
 
 /* ---------- tour ---------- */
-.tour { background: var(--deep); color: #fff; padding-top: clamp(90px, 11vw, 140px); }
-.tour-head { padding-bottom: 50px; }
-.tour-stage { position: relative; height: 100svh; min-height: 600px; overflow: hidden; background: var(--deeper); }
-.tour-layer { position: relative; height: 100svh; min-height: 600px; overflow: hidden; background: var(--deeper); }
-.motion .tour-layer { position: absolute; inset: 0; height: auto; min-height: 0; }
-.tour-bg { position: absolute; inset: -6%; }
-.tour-bg img { width: 100%; height: 100%; object-fit: cover; filter: blur(26px) saturate(1.15) brightness(.42); transform: scale(1.12); }
-.tour-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 70% 50%, rgba(14, 34, 54, 0) 0%, rgba(9, 23, 38, .6) 100%); }
-.tour-inner { position: relative; z-index: 1; height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: clamp(30px, 6vw, 100px); padding-top: calc(var(--nav-h) + 10px); padding-bottom: 90px; }
-.tour-text { max-width: 470px; }
+/* computador: textos rolam à esquerda; o arco com a foto fica fixo à direita e troca com uma cortina */
+.tour { position: relative; background: var(--deep); color: #fff; padding: clamp(90px, 11vw, 140px) 0 40px; overflow: clip; }
+.tour::before { content: ''; position: absolute; width: 1100px; height: 1100px; right: -380px; top: 18%; border-radius: 50%; background: radial-gradient(circle, rgba(214, 182, 120, .12), rgba(214, 182, 120, 0) 62%); pointer-events: none; }
+.tour-head { padding-bottom: 10px; }
+.tour-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(40px, 7vw, 120px); align-items: start; }
+.tour-steps { padding-bottom: 12vh; }
+.tour-step { min-height: 82vh; display: flex; align-items: center; }
+.tour-text { max-width: 470px; transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.js .tour-step:not(.is-active) .tour-text { opacity: .22; transform: translateX(-10px); }
 .tour-num { display: block; font-family: var(--serif); font-size: 1.05rem; color: var(--gold-2); margin-bottom: 18px; }
 .tour-num i { color: rgba(255, 255, 255, .45); font-style: normal; }
-.tour-text h3 { font-family: var(--serif); font-size: clamp(2.3rem, 4.4vw, 3.9rem); line-height: 1.05; margin: 12px 0 18px; }
+.tour-text h3 { font-family: var(--serif); font-size: clamp(2.3rem, 4.2vw, 3.7rem); line-height: 1.05; margin: 12px 0 18px; }
 .tour-text > p:not(.eyebrow) { color: #D2DCE6; font-size: 1.04rem; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 26px; }
 .chips li { padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(214, 182, 120, .45); font-size: .76rem; font-weight: 500; letter-spacing: .04em; color: #EDE3D0; background: rgba(255, 255, 255, .04); }
@@ -141,31 +140,28 @@ p { margin: 0; }
 .tour-thumbs button { width: 74px; height: 74px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .25); transition: transform .35s var(--ease), border-color .3s; }
 .tour-thumbs button:hover { transform: translateY(-3px); border-color: var(--gold-2); }
 .tour-thumbs img { width: 100%; height: 100%; object-fit: cover; }
-.tour-arch { position: relative; height: min(70svh, 700px); aspect-ratio: 3 / 4; border-radius: 999px 999px 24px 24px; box-shadow: 0 60px 120px -40px rgba(0, 0, 0, .8); }
-.tour-arch img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-.tour-arch::after { content: ''; position: absolute; inset: -14px; border: 1px solid rgba(214, 182, 120, .55); border-radius: 999px 999px 32px 32px; pointer-events: none; }
-.tour-map { display: none; }
-.motion .tour-map { position: absolute; z-index: 5; left: 50%; bottom: 26px; transform: translateX(-50%); display: flex; gap: 6px; padding: 8px; border-radius: 999px; background: rgba(9, 23, 38, .55); backdrop-filter: blur(10px); border: 1px solid rgba(214, 182, 120, .2); }
-.tour-map button { display: flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; font-size: .72rem; font-weight: 500; letter-spacing: .06em; color: rgba(255, 255, 255, .6); transition: background .3s, color .3s; }
-.tour-map button::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-.tour-map button.is-active { background: rgba(214, 182, 120, .18); color: var(--gold-2); }
-.tour-map button:hover { color: #fff; }
-.tour-hint { display: none; }
-.motion .tour-hint { position: absolute; z-index: 5; right: clamp(20px, 4vw, 48px); bottom: 34px; display: flex; align-items: center; gap: 8px; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
 
-/* ---------- vídeo ---------- */
-.video { background: var(--sand); }
-.video-grid { display: grid; grid-template-columns: auto 1fr; gap: clamp(40px, 8vw, 120px); align-items: center; }
-.phone { width: min(340px, 78vw); aspect-ratio: 9 / 19; border-radius: 48px; padding: 11px; background: #0B1522; box-shadow: 0 50px 100px -35px rgba(14, 34, 54, .6), inset 0 0 0 1.5px rgba(255, 255, 255, .08); margin-inline: auto; }
-.phone-screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: var(--deep); }
-.phone-screen video { width: 100%; height: 100%; object-fit: cover; }
-.sound { position: absolute; right: 14px; bottom: 16px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: rgba(9, 23, 38, .6); color: #fff; backdrop-filter: blur(8px); }
-.video-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+/* arco (usado no celular dentro de cada ambiente e no computador como moldura fixa) */
+.tour-arch, .tour-frame { position: relative; aspect-ratio: 3 / 4; border-radius: 999px 999px 24px 24px; box-shadow: 0 60px 120px -40px rgba(0, 0, 0, .8); }
+.tour-arch img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.tour-arch::after, .tour-frame-wrap::after { content: ''; position: absolute; inset: -14px; border: 1px solid rgba(214, 182, 120, .55); border-radius: 999px 999px 32px 32px; pointer-events: none; }
+.js .tour-step .tour-arch { display: none; }
+.tour-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 34px; padding-top: var(--nav-h); }
+.tour-frame-wrap { position: relative; }
+.tour-frame { height: min(68vh, 680px); overflow: hidden; background: var(--deeper); isolation: isolate; }
+.tour-pic { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: inset(100% 0% 0% 0%); transform: scale(1.08); transition: clip-path 1.05s cubic-bezier(.77, 0, .18, 1), transform 1.6s var(--ease); will-change: clip-path, transform; }
+.tour-pic.is-first { clip-path: inset(0% 0% 0% 0%); transform: none; }
+.tour-dots { display: flex; align-items: center; gap: 8px; }
+.tour-dots button { width: 8px; height: 8px; border-radius: 6px; background: rgba(255, 255, 255, .28); transition: width .4s var(--ease), background .3s; }
+.tour-dots button:hover { background: rgba(255, 255, 255, .6); }
+.tour-dots button.is-active { width: 28px; background: var(--gold-2); }
+.tour-label { font-size: .74rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: rgba(255, 255, 255, .6); min-height: 1.2em; }
 
 /* ---------- galeria ---------- */
 .section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 40px; margin-bottom: 44px; }
 .section-head-center { flex-direction: column; align-items: center; text-align: center; }
 .section-head-center .lead { margin-inline: auto; }
+.share-btn { margin-top: 22px; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; }
 .filters button { padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line); font-size: .82rem; font-weight: 500; color: var(--navy); transition: background .3s, color .3s; }
 .filters button:hover { background: rgba(183, 154, 88, .12); }
@@ -192,31 +188,39 @@ p { margin: 0; }
 .amen-group .i { width: 40px; height: 40px; padding: 9px; border-radius: 12px; color: var(--gold-2); background: rgba(214, 182, 120, .12); stroke-width: 1.6; }
 
 /* ---------- condomínio ---------- */
-.condo { background: var(--cream); overflow: hidden; }
+.condo { background: var(--cream); }
 .condo-pin { padding-block: clamp(88px, 10vw, 130px); }
-.condo-track { display: flex; gap: 22px; padding-inline: clamp(20px, 5vw, 48px); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-.condo-track::-webkit-scrollbar { display: none; }
-.condo-intro { flex: 0 0 min(440px, 86vw); align-self: center; padding-right: 30px; scroll-snap-align: start; }
-.condo-pin > .condo-intro { max-width: 640px; padding: 0 clamp(20px, 5vw, 48px) 34px; }
-.condo-hint { display: flex; align-items: center; gap: 10px; margin-top: 26px; font-size: .74rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
-.condo-card { position: relative; flex: 0 0 min(340px, 72vw); aspect-ratio: 3 / 4.2; border-radius: 22px; overflow: hidden; scroll-snap-align: start; box-shadow: 0 30px 60px -30px rgba(14, 34, 54, .45); }
-.condo-card:nth-child(even) { margin-top: 60px; }
-/* sem o modo horizontal (celular ou animação reduzida): grade simples, só rolar para baixo */
-.condo-pin:not(.h-mode) .condo-track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; overflow: visible; scroll-snap-type: none; }
-.condo-pin:not(.h-mode) .condo-card { width: auto; margin-top: 0; aspect-ratio: 3 / 4; }
-.condo-pin:not(.h-mode) .condo-card:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
-.condo-pin > .condo-intro .condo-hint { display: none; }
-@media (max-width: 760px) {
-  .condo-pin:not(.h-mode) .condo-track { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .condo-pin:not(.h-mode) .condo-card:first-child { grid-row: auto; aspect-ratio: 16 / 11; }
-  .condo-card figcaption { left: 10px; bottom: 10px; padding: 6px 11px; font-size: .68rem; }
-}
-.condo-pin.h-mode { min-height: 100svh; display: flex; align-items: center; padding-block: 40px; }
-.condo-pin.h-mode .condo-track { overflow: visible; scroll-snap-type: none; padding-right: 12vw; }
-.gallery-more { display: flex; margin: 34px auto 0; }
-.gallery-more[hidden] { display: none; }
-.condo-card img { width: 100%; height: 100%; object-fit: cover; }
+.condo-intro { max-width: 640px; margin-bottom: 36px; }
+.condo-track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.condo-card { position: relative; aspect-ratio: 3 / 4; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(14, 34, 54, .45); }
+.condo-card:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+.condo-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.condo-card:hover img { transform: scale(1.05); }
 .condo-card figcaption { position: absolute; left: 16px; bottom: 16px; padding: 8px 15px; border-radius: 999px; background: rgba(14, 34, 54, .72); backdrop-filter: blur(8px); color: #fff; font-size: .78rem; font-weight: 600; letter-spacing: .06em; }
+
+/* ---------- o que tem perto ---------- */
+.near { background: var(--cream); padding-top: 0; }
+.near-lead { max-width: 46ch; }
+.near-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 290px; gap: 16px; }
+.near-card { position: relative; border-radius: 22px; overflow: hidden; color: #fff; background: var(--deep); box-shadow: 0 30px 60px -32px rgba(14, 34, 54, .55); }
+.near-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.near-card:hover > img { transform: scale(1.05); }
+.near-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9, 23, 38, 0) 35%, rgba(9, 23, 38, .55) 62%, rgba(9, 23, 38, .9) 100%); pointer-events: none; }
+.near-feature { grid-column: span 2; grid-row: span 2; }
+.near-body { position: absolute; z-index: 1; left: 22px; right: 22px; bottom: 20px; }
+.near-dist { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 999px; background: rgba(255, 255, 255, .16); backdrop-filter: blur(8px); font-size: .74rem; font-weight: 600; letter-spacing: .04em; }
+.near-dist .i { width: 15px; height: 15px; }
+.near-card h3 { font-family: var(--serif); font-size: 1.65rem; line-height: 1.1; margin: 12px 0 6px; }
+.near-feature h3 { font-size: clamp(2.2rem, 3.6vw, 3rem); }
+.near-card p { font-size: .9rem; line-height: 1.5; color: #E2E9F0; max-width: 46ch; }
+.near-credit { position: absolute; z-index: 1; top: 12px; right: 14px; font-size: .62rem; color: rgba(255, 255, 255, .78); text-shadow: 0 1px 6px rgba(0, 0, 0, .6); }
+.near-credit a { color: inherit; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .35); }
+.near-info { display: flex; flex-direction: column; justify-content: flex-end; padding: 26px 24px; background: var(--navy); }
+.near-info::after { display: none; }
+.near-info > .i { width: 34px; height: 34px; color: var(--gold-2); margin-bottom: auto; }
+.near-info p b { color: var(--gold-2); font-weight: 600; }
+.near-info .where { margin-top: 18px; color: var(--gold-2); }
+.near-note { margin-top: 18px; font-size: .78rem; color: var(--muted); }
 
 /* ---------- reservar ---------- */
 .book { background: var(--sand); }
@@ -307,15 +311,17 @@ p { margin: 0; }
   .stat:nth-child(n+3) { border-top: 1px solid rgba(183, 154, 88, .22); }
   .intro-badge { left: 0; top: 4%; font-size: .72rem; }
 
-  /* celular: tour em sequência vertical, só rolar para baixo (sem travar a tela, sem deslizar para o lado) */
+  /* celular: tour em sequência vertical, só rolar para baixo; a foto abre no arco ao aparecer */
   .tour { padding-bottom: 30px; }
   .tour-head { padding-bottom: 36px; }
-  .tour-stage, .tour-layer, .motion .tour-layer { position: relative; inset: auto; height: auto; min-height: 0; overflow: visible; background: transparent; }
-  .tour-layer { clip-path: none !important; z-index: auto !important; }
-  .tour-bg, .tour-map, .tour-hint, .motion .tour-map, .motion .tour-hint { display: none; }
-  .tour-inner { grid-template-columns: 1fr; gap: 24px; padding-top: 0; padding-bottom: 70px; }
-  .tour-arch { order: -1; height: auto; width: min(80vw, 360px); margin-inline: auto; }
+  .tour-stage { display: block; }
+  .tour-sticky { display: none; }
+  .tour-steps { padding-bottom: 0; }
+  .tour-step { display: block; min-height: 0; padding: 0 0 70px; }
+  .js .tour-step .tour-arch { display: block; }
+  .tour-arch { width: min(80vw, 360px); margin: 0 auto 26px; }
   .tour-arch::after { inset: -9px; border-radius: 999px 999px 30px 30px; }
+  .js .tour-step:not(.is-active) .tour-text { opacity: 1; transform: none; }
   .tour-num { margin-bottom: 8px; font-size: .92rem; }
   .tour-text h3 { font-size: 2.1rem; margin: 6px 0 10px; }
   .tour-text > p:not(.eyebrow) { font-size: .95rem; line-height: 1.6; }
@@ -323,18 +329,18 @@ p { margin: 0; }
   .chips li { font-size: .7rem; padding: 5px 11px; }
   .tour-thumbs button { width: 64px; height: 64px; border-radius: 12px; }
 
-  .video-grid { grid-template-columns: 1fr; }
-  .video-text { text-align: center; }
-  .video-text .lead { margin-inline: auto; }
-  .video-ctas { justify-content: center; }
   .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; gap: 10px; }
   .tile.wide { grid-column: span 2; }
   .tile span { opacity: 1; transform: none; font-size: .72rem; left: 12px; bottom: 10px; }
   .tile::after { opacity: 1; }
   .amen-groups { grid-template-columns: 1fr; }
   .amen-group { padding: 26px 22px; }
-  .condo-card:nth-child(even) { margin-top: 0; }
+  .condo-track { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .condo-card:first-child { grid-row: auto; aspect-ratio: 16 / 11; }
+  .condo-card figcaption { left: 10px; bottom: 10px; padding: 6px 11px; font-size: .68rem; }
   .options { grid-template-columns: 1fr; }
+  .near-grid { grid-template-columns: 1fr; grid-auto-rows: 330px; gap: 12px; }
+  .near-feature { grid-column: auto; grid-row: span 1; }
   .option-body { padding: 24px 22px 26px; }
   .fab span { display: none; }
   .fab { padding: 16px; right: 16px; bottom: 16px; }

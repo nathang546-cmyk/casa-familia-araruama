@@ -7,10 +7,9 @@ Site da **Casa Família**, casa de temporada em Araruama/RJ (Região dos Lagos).
 ## O que tem no site
 
 - **Abertura** com a foto da piscina e o nome animado.
-- **Tour pela casa**: ao rolar a página, cada ambiente aparece dentro de um arco (o mesmo formato da logo) e depois toma a tela. São 10 paradas: varanda, sala, cozinha, suíte, quartos, banheiro, edícula, piscina, área gourmet e jardim de inverno.
-- **Vídeo** vertical do tour, com botão para enviar o site no WhatsApp.
+- **Tour pela casa** (10 ambientes): no computador, os textos rolam à esquerda e a foto troca dentro de um arco fixo à direita (o mesmo formato da logo), com uma cortina; no celular, os ambientes aparecem em sequência. A rolagem é sempre a normal do navegador: nada trava a tela.
 - **Galeria** com filtros (casa, quartos, banheiros, lazer, condomínio) e foto ampliada.
-- **Comodidades**, **lazer do condomínio** (rolagem horizontal), **opções de reserva** (casa toda ou só a edícula) e **contato**.
+- **Comodidades**, **lazer do condomínio**, **o que tem perto** (Arraial do Cabo, Cabo Frio, Búzios, Lagoa de Araruama, Praia Seca), **opções de reserva** (casa toda ou só a edícula), botão para enviar o site à família e **contato**.
 - Botões de WhatsApp com mensagem pronta e prévia bonita quando o link é compartilhado.
 
 Funciona no celular e no computador. Para quem prefere menos movimento (configuração do sistema), as animações são desligadas e o conteúdo aparece normalmente.
@@ -24,7 +23,7 @@ Funciona no celular e no computador. Para quem prefere menos movimento (configur
 | Número do WhatsApp e mensagens prontas | `assets/js/main.js` (constantes `WA` e `MSG`) |
 | Fotos da galeria (lista, legendas e categorias) | `assets/js/main.js` (lista `FOTOS`) |
 | Arquivos de foto | `assets/img/fotos/` (cada foto tem duas versões: `nome-800.webp` e `nome-1600.webp`) |
-| Vídeo | `assets/video/tour-casa-familia.mp4` |
+| Seção "O que tem perto" (textos, distâncias e créditos das fotos) | `index.html`, bloco `ARREDORES` |
 | Prévia do link no WhatsApp/redes | `assets/img/compartilhar.jpg` (1200×630) |
 
 Depois de alterar o CSS ou o JavaScript, aumente o número da versão nos links do `index.html` (`style.css?v=1` → `?v=2`, `main.js?v=1` → `?v=2`) para os visitantes receberem a versão nova na hora.
@@ -49,8 +48,9 @@ Para dar acesso a alguém: **Settings → Collaborators → Add people** no repo
 
 ## Créditos
 
-- Animações: [GSAP](https://gsap.com) e ScrollTrigger (licença gratuita da GSAP), rolagem suave: [Lenis](https://github.com/darkroomengineering/lenis) (MIT). Os arquivos estão em `assets/vendor/`.
+- Animações: [GSAP](https://gsap.com) e ScrollTrigger (licença gratuita da GSAP). Os arquivos estão em `assets/vendor/`.
 - Ícones: [Lucide](https://lucide.dev) (ISC).
 - Fontes: Playfair Display e Montserrat (Google Fonts).
-- Música do vídeo: “Inside You”, lemonmusicstudio ([Pixabay](https://pixabay.com/music/acoustic-group-inside-you-162760/), licença Pixabay).
-- Fotos: Casa Família.
+- Fotos da casa e do condomínio: Casa Família.
+- Fotos da região (Wikimedia Commons, com crédito em cada foto no site): Leonardo Shinagawa (CC BY 2.0), Ezarate (CC BY-SA 3.0), Jcesarsampaio (CC BY-SA 3.0), Delano Campello (CC BY-SA 3.0), Vinícius94 (CC BY-SA 4.0).
+- Distâncias: rotas calculadas com OpenStreetMap (OSRM), aproximadas e sem trânsito.

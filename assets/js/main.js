@@ -1,5 +1,5 @@
 /* Casa Família · interações do site
-   GSAP + ScrollTrigger (animações por rolagem) e Lenis (rolagem suave). */
+   GSAP + ScrollTrigger para as animações; a rolagem é a nativa do navegador. */
 (() => {
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -55,7 +55,6 @@
   const ordem = [...DESTAQUES.map(id => byId[id]), ...FOTOS.filter(f => !DESTAQUES.includes(f.id))];
 
   /* ---------------- lightbox ---------------- */
-  let lenis = null;
   const lb = $('[data-lightbox]');
   const lbImg = $('[data-lb-img]');
   let lbList = [], lbIndex = 0, lastFocus = null;
@@ -70,10 +69,10 @@
   };
   const openLB = (list, i) => {
     lbList = list; lbIndex = i; lastFocus = document.activeElement;
-    renderLB(); lb.hidden = false; document.body.style.overflow = 'hidden'; lenis && lenis.stop();
+    renderLB(); lb.hidden = false; document.body.style.overflow = 'hidden';
     $('[data-lb-close]').focus();
   };
-  const closeLB = () => { lb.hidden = true; document.body.style.overflow = ''; lenis && lenis.start(); lastFocus && lastFocus.focus(); };
+  const closeLB = () => { lb.hidden = true; document.body.style.overflow = ''; lastFocus && lastFocus.focus(); };
   const stepLB = d => { lbIndex = (lbIndex + d + lbList.length) % lbList.length; renderLB(); };
   $('[data-lb-close]').addEventListener('click', closeLB);
   $('[data-lb-prev]').addEventListener('click', () => stepLB(-1));
@@ -161,21 +160,6 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---------------- vídeo ---------------- */
-  const video = $('[data-video]');
-  const sound = $('[data-sound]');
-  if (video) {
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) video.play().catch(() => {});
-      else video.pause();
-    }, { threshold: .4 }).observe(video);
-    sound.addEventListener('click', () => {
-      video.muted = !video.muted;
-      if (!video.muted) video.play().catch(() => {});
-      sound.innerHTML = `<svg class="i"><use href="#i-${video.muted ? 'volume-x' : 'volume-2'}"/></svg>`;
-      sound.setAttribute('aria-label', video.muted ? 'Ativar som' : 'Desativar som');
-    });
-  }
   const share = $('[data-share]');
   share && share.addEventListener('click', () => {
     const url = location.href.split('#')[0];
@@ -184,21 +168,62 @@
     else window.open(`https://wa.me/?text=${encodeURIComponent(`${text} ${url}`)}`, '_blank', 'noopener');
   });
 
-  /* ---------------- condomínio: no celular (ou sem animação) o texto fica acima dos cards ---------------- */
-  const condoPin = $('[data-condo]'), condoTrack = $('[data-condo-track]'), condoIntro = $('.condo-intro');
-  const mqCondo = matchMedia('(min-width: 900px)');
-  const placeCondoIntro = () => {
-    const inTrack = mqCondo.matches && motion && !!window.gsap;
-    if (inTrack && condoIntro.parentNode !== condoTrack) condoTrack.prepend(condoIntro);
-    if (!inTrack && condoIntro.parentNode !== condoPin) condoPin.prepend(condoIntro);
+  /* ---------------- TOUR ----------------
+     Computador: os textos rolam à esquerda e o arco à direita fica fixo; quando um ambiente chega
+     ao meio da tela, a foto troca dentro do arco com uma cortina (descendo: sobe; subindo: desce).
+     Rolagem 100% normal: nada trava, nada puxa. Celular: cada ambiente com a própria foto. */
+  const stage = $('[data-tour]');
+  const steps = $$('.tour-step', stage);
+  const sticky = document.createElement('div');
+  sticky.className = 'tour-sticky';
+  sticky.setAttribute('aria-hidden', 'true');
+  sticky.innerHTML = '<div class="tour-frame-wrap"><div class="tour-frame"></div></div><p class="tour-label"></p><div class="tour-dots"></div>';
+  const frame = $('.tour-frame', sticky), dots = $('.tour-dots', sticky), label = $('.tour-label', sticky);
+  const titles = steps.map(st => $('h3', st).textContent);
+  const pics = steps.map((st, i) => {
+    const orig = $('.tour-arch img', st);
+    const im = document.createElement('img');
+    im.className = 'tour-pic' + (i === 0 ? ' is-first' : '');
+    im.src = orig.getAttribute('src'); im.alt = ''; im.decoding = 'async';
+    frame.appendChild(im);
+    const b = document.createElement('button');
+    b.tabIndex = -1;
+    b.addEventListener('click', () => st.scrollIntoView({ behavior: motion ? 'smooth' : 'auto', block: 'center' }));
+    dots.appendChild(b);
+    return im;
+  });
+  stage.appendChild(sticky);
+  let atual = -1, camada = 1;
+  const ativar = i => {
+    if (i === atual) return;
+    const dir = i > atual ? 1 : -1, primeira = atual === -1;
+    atual = i;
+    steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
+    [...dots.children].forEach((b, k) => b.classList.toggle('is-active', k === i));
+    label.textContent = titles[i];
+    const pic = pics[i];
+    pic.classList.remove('is-first');
+    pic.style.zIndex = ++camada;
+    if (primeira) { pic.style.transition = 'none'; pic.style.clipPath = 'inset(0% 0% 0% 0%)'; pic.style.transform = 'none'; return; }
+    pic.style.transition = 'none';
+    pic.style.clipPath = dir > 0 ? 'inset(100% 0% 0% 0%)' : 'inset(0% 0% 100% 0%)';
+    pic.style.transform = 'scale(1.08)';
+    void pic.offsetWidth;
+    pic.style.transition = '';
+    pic.style.clipPath = 'inset(0% 0% 0% 0%)';
+    pic.style.transform = 'scale(1)';
   };
-  placeCondoIntro();
-  mqCondo.addEventListener('change', placeCondoIntro);
+  // o ambiente que cruza a faixa do meio da tela vira o ativo
+  const observador = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) ativar(steps.indexOf(e.target)); });
+  }, { rootMargin: '-48% 0px -48% 0px' });
+  steps.forEach(st => observador.observe(st));
+  ativar(0);
 
   /* ---------------- sem GSAP ou com movimento reduzido: para aqui ---------------- */
-  const anchorScroll = (target) => {
-    if (lenis) lenis.scrollTo(target, { duration: 1.4 });
-    else (target === 0 ? window.scrollTo({ top: 0, behavior: 'smooth' }) : target.scrollIntoView({ behavior: 'smooth' }));
+  const anchorScroll = target => {
+    const behavior = motion ? 'smooth' : 'auto';
+    if (target === 0) window.scrollTo({ top: 0, behavior }); else target.scrollIntoView({ behavior });
   };
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href^="#"]');
@@ -214,13 +239,6 @@
   // celular: não recalcula tudo quando a barra de endereço aparece/some (evita pulos no tour)
   ScrollTrigger.config({ ignoreMobileResize: true });
   root.classList.add('gsap-ready');
-
-  if (window.Lenis) {
-    lenis = new Lenis({ lerp: .1, smoothWheel: true });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(t => lenis.raf(t * 1000));
-    gsap.ticker.lagSmoothing(0);
-  }
 
   /* hero: título letra a letra e foto aproximando */
   const split = el => {
@@ -265,97 +283,18 @@
   });
   gsap.fromTo('[data-parallax-bg]', { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.closing', start: 'top bottom', end: 'bottom top', scrub: true } });
 
-  /* ---------------- TOUR: atravessar as portas em arco ---------------- */
-  const stage = $('[data-tour]');
-  const layers = $$('.tour-layer', stage);
-  const map = $('[data-tour-map]');
-  const hint = $('[data-tour-hint]');
-  const mapBtns = layers.map((l, i) => {
-    const b = document.createElement('button');
-    b.textContent = l.dataset.room; b.setAttribute('aria-label', `Ir para ${l.dataset.room}`);
-    map.appendChild(b); return b;
-  });
-  const STEP = 1.45;
-  const NOSNAP = /[?&]nosnap(&|=|$)/.test(location.search); // só para testes
+  /* tour no celular: cada foto abre no arco ao aparecer na tela */
   const mm = gsap.matchMedia();
-  // computador: a seção trava e as salas abrem pelo arco conforme a rolagem
-  mm.add('(min-width: 761px)', () => {
-    const mobile = false;
-    // A próxima sala nasce dentro do arco da foto (como uma cortina subindo) e depois toma a tela.
-    const geo = layer => {
-      const a = $('.tour-arch', layer), inner = $('.tour-inner', layer);
-      return { x: a.offsetLeft + inner.offsetLeft, y: a.offsetTop + inner.offsetTop, w: a.offsetWidth, h: a.offsetHeight, W: layer.offsetWidth, H: layer.offsetHeight };
-    };
-    const inset = (t, r, b, l, rad) => `inset(${t}px ${r}px ${b}px ${l}px round ${rad}px ${rad}px 24px 24px)`;
-    const ARCH = layer => { const g = geo(layer); return inset(g.y, g.W - g.x - g.w, g.H - g.y - g.h, g.x, g.w / 2); };
-    const CLOSED = layer => { const g = geo(layer); return inset(g.y + g.h, g.W - g.x - g.w, g.H - g.y - g.h, g.x, g.w / 2); };
-    const OPEN = 'inset(0px 0px 0px 0px round 0px 0px 0px 0px)';
-    layers.forEach((l, i) => { l.style.zIndex = i + 1; });
-    layers.slice(1).forEach(l => gsap.set(l, { clipPath: CLOSED(l) }));
-    gsap.set($$('.tour-bg img', stage), { scale: 1.12 });
-
-    const times = [0];
-    const tl = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: {
-        trigger: stage, start: 'top top', pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
-        end: () => `+=${(layers.length - 1) * window.innerHeight * (mobile ? .95 : 1.15)}`,
-        snap: NOSNAP ? false : { snapTo: 'labels', inertia: false, duration: { min: .25, max: .9 }, delay: .12, ease: 'power1.inOut' },
-        onUpdate: self => {
-          const t = self.progress * tl.duration();
-          let best = 0;
-          times.forEach((x, i) => { if (Math.abs(x - t) < Math.abs(times[best] - t)) best = i; });
-          mapBtns.forEach((b, i) => b.classList.toggle('is-active', i === best));
-          hint && (hint.style.opacity = self.progress > .02 ? 0 : 1);
-        },
-      },
-    });
-    tl.addLabel('r0', 0);
-    for (let i = 1; i < layers.length; i++) {
-      const at = (i - 1) * STEP + .25;
-      const prev = layers[i - 1], cur = layers[i];
-      tl.to($('.tour-text', prev), { y: -40, opacity: 0, duration: .4, ease: 'power2.in' }, at)
-        .to($('.tour-bg img', prev), { scale: 1.3, duration: 1.1 }, at)
-        .fromTo(cur, { clipPath: () => CLOSED(cur) }, { clipPath: () => ARCH(cur), duration: .45, ease: 'power2.inOut', immediateRender: false }, at)
-        .fromTo($('.tour-arch', cur), { scale: 1.08 }, { scale: 1, duration: 1.05, ease: 'power2.out', immediateRender: false }, at)
-        .to(cur, { clipPath: OPEN, duration: .65, ease: 'power3.inOut' }, at + .45)
-        .fromTo($('.tour-bg img', cur), { scale: 1.4 }, { scale: 1.12, duration: .7, ease: 'power2.out', immediateRender: false }, at + .45)
-        .fromTo($('.tour-text', cur), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: .55, ease: 'power3.out' }, at + .7);
-      tl.addLabel(`r${i}`, at + 1.2);
-      times.push(at + 1.2);
-    }
-    tl.to({}, { duration: .35 });
-
-    mapBtns.forEach((b, i) => {
-      b.onclick = () => {
-        const st = tl.scrollTrigger;
-        anchorScroll(st.start + (st.end - st.start) * (times[i] / tl.duration()));
-      };
-    });
-    mapBtns[0].classList.add('is-active');
-    return () => { gsap.set(layers, { clearProps: 'clipPath,zIndex' }); };
-  });
-
-  // celular: sequência vertical, só rolar para baixo; cada foto abre no arco ao aparecer na tela
   mm.add('(max-width: 760px)', () => {
-    layers.forEach(layer => {
-      const img = $('.tour-arch img', layer), txt = $('.tour-text', layer);
-      gsap.timeline({ scrollTrigger: { trigger: layer, start: 'top 82%', once: true } })
+    steps.forEach(st => {
+      const img = $('.tour-arch img', st), txt = $('.tour-text', st);
+      gsap.timeline({ scrollTrigger: { trigger: st, start: 'top 82%', once: true } })
         .fromTo(img, { clipPath: 'inset(100% 0% 0% 0%)', scale: 1.15 }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.1, ease: 'power3.inOut' })
         .to(img, { scale: 1, duration: 1.4, ease: 'power2.out' }, 0)
         .fromTo(txt, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'power3.out' }, .35);
     });
   });
 
-  /* ---------------- CONDOMÍNIO: rolagem horizontal (computador) ---------------- */
-  mm.add('(min-width: 900px)', () => {
-    const pinEl = $('[data-condo]'); const track = $('[data-condo-track]');
-    pinEl.classList.add('h-mode');
-    const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
-    gsap.to(track, { x: () => -dist(), ease: 'none',
-      scrollTrigger: { trigger: pinEl, start: 'top top', end: () => `+=${dist()}`, pin: true, scrub: 1, invalidateOnRefresh: true } });
-    return () => pinEl.classList.remove('h-mode');
-  });
-
   window.addEventListener('load', () => ScrollTrigger.refresh());
 })();
+

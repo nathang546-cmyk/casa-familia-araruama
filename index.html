@@ -28,8 +28,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
   <link rel="preload" as="image" href="assets/img/fotos/piscina-1600.webp" media="(min-width: 761px)">
   <link rel="preload" as="image" href="assets/img/fotos/capa-1600.webp" media="(max-width: 760px)">
-  <link rel="stylesheet" href="assets/vendor/lenis.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=3">
+  <link rel="stylesheet" href="assets/css/style.css?v=5">
 
   <script type="application/ld+json">
   {
@@ -70,6 +69,7 @@
       <a href="#galeria">Galeria</a>
       <a href="#comodidades">Comodidades</a>
       <a href="#condominio">Condomínio</a>
+      <a href="#arredores">Região</a>
     </nav>
     <a class="btn btn-gold btn-sm nav-cta" href="#reservar">Reservar</a>
     <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" data-menu-toggle><span></span><span></span></button>
@@ -80,6 +80,7 @@
     <a href="#galeria">Galeria</a>
     <a href="#comodidades">Comodidades</a>
     <a href="#condominio">Condomínio</a>
+    <a href="#arredores">O que tem perto</a>
     <a href="#reservar" class="btn btn-gold">Reservar</a>
   </div>
 </header>
@@ -142,182 +143,118 @@
       <p class="lead lead-light" data-reveal>Role a página e passeie pelos ambientes, da varanda ao jardim de inverno.</p>
     </div>
 
-    <div class="tour-stage" data-tour>
-      <!-- 01 -->
-      <article class="tour-layer" data-room="Varanda">
-        <div class="tour-bg"><img src="assets/img/fotos/varanda-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
-          <div class="tour-text">
-            <span class="tour-num">01 <i>/ 10</i></span>
-            <p class="eyebrow">A chegada</p>
-            <h3>Varanda e garagem</h3>
-            <p>Varanda coberta com móveis de madeira maciça e vista para as áreas verdes do condomínio. A garagem também é coberta.</p>
-            <ul class="chips"><li>Garagem coberta</li><li>Fechadura digital</li></ul>
-            <div class="tour-thumbs" data-thumbs="fachada,varanda,varanda3"></div>
-          </div>
+    <div class="tour-stage container" data-tour>
+      <div class="tour-steps">
+        <article class="tour-step" data-room="Varanda">
           <figure class="tour-arch"><img src="assets/img/fotos/varanda2-1600.webp" alt="Varanda com móveis de madeira maciça" loading="lazy"></figure>
-        </div>
-      </article>
-      <!-- 02 -->
-      <article class="tour-layer" data-room="Sala">
-        <div class="tour-bg"><img src="assets/img/fotos/sala-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
           <div class="tour-text">
-            <span class="tour-num">02 <i>/ 10</i></span>
-            <p class="eyebrow">Para estar junto</p>
-            <h3>Sala de estar e jantar</h3>
-            <p>Ampla e integrada, com sofá confortável, Smart TV de 55”, ar-condicionado e mesa de jantar para seis pessoas.</p>
-            <ul class="chips"><li>Smart TV 55”</li><li>Ar-condicionado</li><li>Mesa para 6</li></ul>
-            <div class="tour-thumbs" data-thumbs="sala,jantar,aparador"></div>
+          <span class="tour-num">01 <i>/ 10</i></span>
+          <p class="eyebrow">A chegada</p>
+          <h3>Varanda e garagem</h3>
+          <p>Varanda coberta com móveis de madeira maciça e vista para as áreas verdes do condomínio. A garagem também é coberta.</p>
+          <ul class="chips"><li>Garagem coberta</li><li>Fechadura digital</li></ul>
+          <div class="tour-thumbs" data-thumbs="fachada,varanda,varanda3"></div>
           </div>
+        </article>
+        <article class="tour-step" data-room="Sala">
           <figure class="tour-arch"><img src="assets/img/fotos/sala2-1600.webp" alt="Sala de estar integrada à sala de jantar" loading="lazy"></figure>
-        </div>
-      </article>
-      <!-- 03 -->
-      <article class="tour-layer" data-room="Cozinha">
-        <div class="tour-bg"><img src="assets/img/fotos/cozinha-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
           <div class="tour-text">
-            <span class="tour-num">03 <i>/ 10</i></span>
-            <p class="eyebrow">Mão na massa</p>
-            <h3>Cozinha equipada</h3>
-            <p>Cooktop com coifa, geladeira, micro-ondas, dois fornos elétricos, air fryer, cafeteira e todos os utensílios para cozinhar com calma.</p>
-            <ul class="chips"><li>Air fryer</li><li>Cafeteira</li><li>Dois fornos</li></ul>
-            <div class="tour-thumbs" data-thumbs="cozinha2,cozinha3,cozinha4"></div>
+          <span class="tour-num">02 <i>/ 10</i></span>
+          <p class="eyebrow">Para estar junto</p>
+          <h3>Sala de estar e jantar</h3>
+          <p>Ampla e integrada, com sofá confortável, Smart TV de 55”, ar-condicionado e mesa de jantar para seis pessoas.</p>
+          <ul class="chips"><li>Smart TV 55”</li><li>Ar-condicionado</li><li>Mesa para 6</li></ul>
+          <div class="tour-thumbs" data-thumbs="sala,jantar,aparador"></div>
           </div>
+        </article>
+        <article class="tour-step" data-room="Cozinha">
           <figure class="tour-arch"><img src="assets/img/fotos/cozinha-1600.webp" alt="Cozinha com bancada e mesa" loading="lazy"></figure>
-        </div>
-      </article>
-      <!-- 04 -->
-      <article class="tour-layer" data-room="Suíte">
-        <div class="tour-bg"><img src="assets/img/fotos/suite-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
           <div class="tour-text">
-            <span class="tour-num">04 <i>/ 10</i></span>
-            <p class="eyebrow">Descanso</p>
-            <h3>Suíte</h3>
-            <p>Cama de casal, ar-condicionado, Smart TV e banheiro privativo com box de vidro. Roupa de cama e toalhas inclusas.</p>
-            <ul class="chips"><li>Banheiro privativo</li><li>Ar-condicionado</li><li>Smart TV</li></ul>
-            <div class="tour-thumbs" data-thumbs="suite2,suite_banho,suite_banho2"></div>
+          <span class="tour-num">03 <i>/ 10</i></span>
+          <p class="eyebrow">Mão na massa</p>
+          <h3>Cozinha equipada</h3>
+          <p>Cooktop com coifa, geladeira, micro-ondas, dois fornos elétricos, air fryer, cafeteira e todos os utensílios para cozinhar com calma.</p>
+          <ul class="chips"><li>Air fryer</li><li>Cafeteira</li><li>Dois fornos</li></ul>
+          <div class="tour-thumbs" data-thumbs="cozinha2,cozinha3,cozinha4"></div>
           </div>
+        </article>
+        <article class="tour-step" data-room="Suíte">
           <figure class="tour-arch"><img src="assets/img/fotos/suite-1600.webp" alt="Suíte com cama de casal" loading="lazy"></figure>
-        </div>
-      </article>
-      <!-- 05 -->
-      <article class="tour-layer" data-room="Quartos">
-        <div class="tour-bg"><img src="assets/img/fotos/q3-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
           <div class="tour-text">
-            <span class="tour-num">05 <i>/ 10</i></span>
-            <p class="eyebrow">Para todo mundo</p>
-            <h3>Quartos 2 e 3</h3>
-            <p>Cama de casal, ar-condicionado e Smart TV em cada um. O quarto 2 tem ainda uma escrivaninha.</p>
-            <ul class="chips"><li>Cama de casal</li><li>Ar-condicionado</li><li>Smart TV</li></ul>
-            <div class="tour-thumbs" data-thumbs="q3b,q2,q2b"></div>
+          <span class="tour-num">04 <i>/ 10</i></span>
+          <p class="eyebrow">Descanso</p>
+          <h3>Suíte</h3>
+          <p>Cama de casal, ar-condicionado, Smart TV e banheiro privativo com box de vidro. Roupa de cama e toalhas inclusas.</p>
+          <ul class="chips"><li>Banheiro privativo</li><li>Ar-condicionado</li><li>Smart TV</li></ul>
+          <div class="tour-thumbs" data-thumbs="suite2,suite_banho,suite_banho2"></div>
           </div>
+        </article>
+        <article class="tour-step" data-room="Quartos">
           <figure class="tour-arch"><img src="assets/img/fotos/q3-1600.webp" alt="Quarto 3 com cama de casal" loading="lazy"></figure>
-        </div>
-      </article>
-      <!-- 06 -->
-      <article class="tour-layer" data-room="Banheiro">
-        <div class="tour-bg"><img src="assets/img/fotos/banho2-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
           <div class="tour-text">
-            <span class="tour-num">06 <i>/ 10</i></span>
-            <p class="eyebrow">Cuidado nos detalhes</p>
-            <h3>Banheiro social</h3>
-            <p>Box de vidro, bancada com cuba e espelho, com toalhas do enxoval Casa Família à sua espera.</p>
-            <ul class="chips"><li>Toalhas inclusas</li><li>Box de vidro</li></ul>
-            <div class="tour-thumbs" data-thumbs="banho,enxoval"></div>
+          <span class="tour-num">05 <i>/ 10</i></span>
+          <p class="eyebrow">Para todo mundo</p>
+          <h3>Quartos 2 e 3</h3>
+          <p>Cama de casal, ar-condicionado e Smart TV em cada um. O quarto 2 tem ainda uma escrivaninha.</p>
+          <ul class="chips"><li>Cama de casal</li><li>Ar-condicionado</li><li>Smart TV</li></ul>
+          <div class="tour-thumbs" data-thumbs="q3b,q2,q2b"></div>
           </div>
+        </article>
+        <article class="tour-step" data-room="Banheiro">
           <figure class="tour-arch"><img src="assets/img/fotos/banho2-1600.webp" alt="Banheiro social com box de vidro" loading="lazy"></figure>
-        </div>
-      </article>
-      <!-- 07 -->
-      <article class="tour-layer" data-room="Edícula">
-        <div class="tour-bg"><img src="assets/img/fotos/edicula-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
           <div class="tour-text">
-            <span class="tour-num">07 <i>/ 10</i></span>
-            <p class="eyebrow">Um espaço independente</p>
-            <h3>Edícula</h3>
-            <p>Quarto climatizado com cama de casal e cama de solteiro, Smart TV, cantinho de leitura e banheiro próprio. Pode ser reservada separadamente, para até 4 pessoas.</p>
-            <ul class="chips"><li>Até 4 pessoas</li><li>Banheiro próprio</li></ul>
-            <div class="tour-thumbs" data-thumbs="edicula,edicula3,edicula_banho"></div>
+          <span class="tour-num">06 <i>/ 10</i></span>
+          <p class="eyebrow">Cuidado nos detalhes</p>
+          <h3>Banheiro social</h3>
+          <p>Box de vidro, bancada com cuba e espelho, com toalhas do enxoval Casa Família à sua espera.</p>
+          <ul class="chips"><li>Toalhas inclusas</li><li>Box de vidro</li></ul>
+          <div class="tour-thumbs" data-thumbs="banho,enxoval"></div>
           </div>
+        </article>
+        <article class="tour-step" data-room="Edícula">
           <figure class="tour-arch"><img src="assets/img/fotos/edicula2-1600.webp" alt="Quarto da edícula" loading="lazy"></figure>
-        </div>
-      </article>
-      <!-- 08 -->
-      <article class="tour-layer" data-room="Piscina">
-        <div class="tour-bg"><img src="assets/img/fotos/piscina2-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
           <div class="tour-text">
-            <span class="tour-num">08 <i>/ 10</i></span>
-            <p class="eyebrow">Lazer</p>
-            <h3>Piscina privativa</h3>
-            <p>Piscina com cascata, espreguiçadeiras, mesas com ombrelone e muito sol. Só para vocês.</p>
-            <ul class="chips"><li>Cascata</li><li>Espreguiçadeiras</li></ul>
-            <div class="tour-thumbs" data-thumbs="capa,piscina3,piscina4"></div>
+          <span class="tour-num">07 <i>/ 10</i></span>
+          <p class="eyebrow">Um espaço independente</p>
+          <h3>Edícula</h3>
+          <p>Quarto climatizado com cama de casal e cama de solteiro, Smart TV, cantinho de leitura e banheiro próprio. Pode ser reservada separadamente, para até 4 pessoas.</p>
+          <ul class="chips"><li>Até 4 pessoas</li><li>Banheiro próprio</li></ul>
+          <div class="tour-thumbs" data-thumbs="edicula,edicula3,edicula_banho"></div>
           </div>
+        </article>
+        <article class="tour-step" data-room="Piscina">
           <figure class="tour-arch"><img src="assets/img/fotos/piscina2-1600.webp" alt="Piscina privativa com palmeira" loading="lazy"></figure>
-        </div>
-      </article>
-      <!-- 09 -->
-      <article class="tour-layer" data-room="Gourmet">
-        <div class="tour-bg"><img src="assets/img/fotos/gourmet-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
           <div class="tour-text">
-            <span class="tour-num">09 <i>/ 10</i></span>
-            <p class="eyebrow">Reunir a família</p>
-            <h3>Área gourmet</h3>
-            <p>Churrasqueira, forno, fogão de cinco bocas, chopeira profissional, máquina de gelo e mesa grande para todo mundo, ao lado da piscina.</p>
-            <ul class="chips"><li>Churrasqueira</li><li>Chopeira</li><li>Máquina de gelo</li></ul>
-            <div class="tour-thumbs" data-thumbs="gourmet2,chopeira,piscina_hero"></div>
+          <span class="tour-num">08 <i>/ 10</i></span>
+          <p class="eyebrow">Lazer</p>
+          <h3>Piscina privativa</h3>
+          <p>Piscina com cascata, espreguiçadeiras, mesas com ombrelone e muito sol. Só para vocês.</p>
+          <ul class="chips"><li>Cascata</li><li>Espreguiçadeiras</li></ul>
+          <div class="tour-thumbs" data-thumbs="capa,piscina3,piscina4"></div>
           </div>
+        </article>
+        <article class="tour-step" data-room="Gourmet">
           <figure class="tour-arch"><img src="assets/img/fotos/gourmet-1600.webp" alt="Área gourmet com churrasqueira e mesa" loading="lazy"></figure>
-        </div>
-      </article>
-      <!-- 10 -->
-      <article class="tour-layer" data-room="Jardim">
-        <div class="tour-bg"><img src="assets/img/fotos/jardim-800.webp" alt="" loading="lazy"></div>
-        <div class="tour-inner container">
           <div class="tour-text">
-            <span class="tour-num">10 <i>/ 10</i></span>
-            <p class="eyebrow">Um respiro verde</p>
-            <h3>Jardim de inverno</h3>
-            <p>Um cantinho com plantas, palmeira e mesa de ferro, perfeito para o café da manhã ao ar livre. E uma lavanderia com máquina de lavar.</p>
-            <ul class="chips"><li>Café ao ar livre</li><li>Lavanderia</li></ul>
-            <div class="tour-thumbs" data-thumbs="jardim2,lavanderia,lavanderia2"></div>
+          <span class="tour-num">09 <i>/ 10</i></span>
+          <p class="eyebrow">Reunir a família</p>
+          <h3>Área gourmet</h3>
+          <p>Churrasqueira, forno, fogão de cinco bocas, chopeira profissional, máquina de gelo e mesa grande para todo mundo, ao lado da piscina.</p>
+          <ul class="chips"><li>Churrasqueira</li><li>Chopeira</li><li>Máquina de gelo</li></ul>
+          <div class="tour-thumbs" data-thumbs="gourmet2,chopeira,piscina_hero"></div>
           </div>
+        </article>
+        <article class="tour-step" data-room="Jardim">
           <figure class="tour-arch"><img src="assets/img/fotos/jardim-1600.webp" alt="Jardim de inverno com palmeira" loading="lazy"></figure>
-        </div>
-      </article>
-
-      <nav class="tour-map" aria-label="Ambientes do tour" data-tour-map></nav>
-      <div class="tour-hint" data-tour-hint><svg class="i"><use href="#i-arrow-down"/></svg> role para entrar</div>
-    </div>
-  </section>
-
-  <!-- ================= VÍDEO ================= -->
-  <section class="video section" id="video">
-    <div class="container video-grid">
-      <div class="phone" data-reveal>
-        <div class="phone-screen">
-          <video data-video muted loop playsinline preload="none" poster="assets/video/tour-capa.webp">
-            <source src="assets/video/tour-casa-familia.mp4" type="video/mp4">
-          </video>
-          <button class="sound" data-sound aria-label="Ativar som"><svg class="i"><use href="#i-volume-x"/></svg></button>
-        </div>
-      </div>
-      <div class="video-text">
-        <p class="eyebrow" data-reveal>Em 40 segundos</p>
-        <h2 class="h2" data-reveal>A casa em um <em>vídeo</em></h2>
-        <p class="lead" data-reveal>Mande para a família e decidam juntos. Um passeio rápido pelos ambientes, pela piscina e pelo lazer do condomínio.</p>
-        <div class="video-ctas" data-reveal>
-          <button class="btn btn-navy" data-share><svg class="i"><use href="#i-message-circle"/></svg> Enviar para a família</button>
-          <a class="btn btn-line" href="assets/video/tour-casa-familia.mp4" download>Baixar vídeo</a>
-        </div>
+          <div class="tour-text">
+          <span class="tour-num">10 <i>/ 10</i></span>
+          <p class="eyebrow">Um respiro verde</p>
+          <h3>Jardim de inverno</h3>
+          <p>Um cantinho com plantas, palmeira e mesa de ferro, perfeito para o café da manhã ao ar livre. E uma lavanderia com máquina de lavar.</p>
+          <ul class="chips"><li>Café ao ar livre</li><li>Lavanderia</li></ul>
+          <div class="tour-thumbs" data-thumbs="jardim2,lavanderia,lavanderia2"></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -390,15 +327,14 @@
 
   <!-- ================= CONDOMÍNIO ================= -->
   <section class="condo" id="condominio">
-    <div class="condo-pin" data-condo>
+    <div class="condo-pin container" data-condo>
+      <div class="condo-intro">
+        <p class="eyebrow">Condomínio</p>
+        <h2 class="h2">Lazer para <em>toda a família</em></h2>
+        <p class="lead">O Condomínio Barão do Monte Belo é fechado, com portaria, e tem piscinas, quiosques, quadra, campo, playground e alamedas arborizadas. E um pôr do sol de cartão-postal.</p>
+      </div>
       <div class="condo-track" data-condo-track>
-        <div class="condo-intro">
-          <p class="eyebrow">Condomínio</p>
-          <h2 class="h2">Lazer para <em>toda a família</em></h2>
-          <p class="lead">O Condomínio Barão do Monte Belo é fechado, com portaria, e tem piscinas, quiosques, quadra, campo, playground e alamedas arborizadas. E um pôr do sol de cartão-postal.</p>
-          <p class="condo-hint"><svg class="i"><use href="#i-arrow-down"/></svg> continue rolando</p>
-        </div>
-        <figure class="condo-card"><img src="assets/img/fotos/condo_quiosques-800.webp" alt="Piscina do condomínio com quiosques de sapê" loading="lazy"><figcaption>Piscinas e quiosques</figcaption></figure>
+        <figure class="condo-card"><img src="assets/img/fotos/condo_quiosques-1600.webp" alt="Piscina do condomínio com quiosques de sapê" loading="lazy"><figcaption>Piscinas e quiosques</figcaption></figure>
         <figure class="condo-card"><img src="assets/img/fotos/condo_piscina-800.webp" alt="Piscina do condomínio" loading="lazy"><figcaption>Piscinas</figcaption></figure>
         <figure class="condo-card"><img src="assets/img/fotos/quadra-800.webp" alt="Quadra poliesportiva" loading="lazy"><figcaption>Quadra poliesportiva</figcaption></figure>
         <figure class="condo-card"><img src="assets/img/fotos/campo-800.webp" alt="Campo de futebol" loading="lazy"><figcaption>Campo de futebol</figcaption></figure>
@@ -411,6 +347,73 @@
     </div>
   </section>
 
+  <!-- ================= ARREDORES ================= -->
+  <section class="near section" id="arredores">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" data-reveal>O que tem perto</p>
+          <h2 class="h2" data-reveal>No coração da <em>Região dos Lagos</em></h2>
+        </div>
+        <p class="lead near-lead" data-reveal>A casa fica em Araruama, porta de entrada da Região dos Lagos. Em menos de uma hora de carro você chega às praias de Cabo Frio e Arraial do Cabo.</p>
+      </div>
+      <div class="near-grid">
+        <article class="near-card near-feature" data-reveal>
+          <img src="assets/img/fotos/perto_arraial-1600.webp" alt="Praia do Forno, em Arraial do Cabo, com água azul-turquesa" loading="lazy">
+          <div class="near-body">
+            <span class="near-dist"><svg class="i"><use href="#i-car"/></svg>55 km · cerca de 1 h</span>
+            <h3>Arraial do Cabo</h3>
+            <p>O “Caribe brasileiro”: água transparente, Prainhas do Pontal do Atalaia, Praia do Forno e passeios de barco pelas grutas e praias.</p>
+          </div>
+          <small class="near-credit">Foto: <a href="https://commons.wikimedia.org/wiki/File:Praia_do_Forno_-_Arraial.jpg" target="_blank" rel="noopener">Leonardo Shinagawa</a> · <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a></small>
+        </article>
+        <article class="near-card" data-reveal>
+          <img src="assets/img/fotos/perto_cabofrio-800.webp" alt="Praia do Forte, em Cabo Frio" loading="lazy">
+          <div class="near-body">
+            <span class="near-dist"><svg class="i"><use href="#i-car"/></svg>46 km · cerca de 50 min</span>
+            <h3>Cabo Frio</h3>
+            <p>Praia do Forte de areia branquinha, Forte São Mateus e o Canal do Itajuru, com bares e restaurantes.</p>
+          </div>
+          <small class="near-credit">Foto: <a href="https://commons.wikimedia.org/wiki/File:PlayaForteSaoMateo1-CaboFrio-Brasil-feb2016.jpg" target="_blank" rel="noopener">Ezarate</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></small>
+        </article>
+        <article class="near-card" data-reveal>
+          <img src="assets/img/fotos/perto_buzios-800.webp" alt="Pôr do sol no deck da Orla Bardot, em Búzios" loading="lazy">
+          <div class="near-body">
+            <span class="near-dist"><svg class="i"><use href="#i-car"/></svg>60 km · cerca de 1h15</span>
+            <h3>Búzios</h3>
+            <p>Orla Bardot, Rua das Pedras e mais de 20 praias para conhecer.</p>
+          </div>
+          <small class="near-credit">Foto: <a href="https://commons.wikimedia.org/wiki/File:Deck_Orla_Bardot_B%C3%BAzios_-_Rio_de_Janeiro.jpg" target="_blank" rel="noopener">Jcesarsampaio</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></small>
+        </article>
+        <article class="near-card" data-reveal>
+          <img src="assets/img/fotos/perto_lagoa-800.webp" alt="Pôr do sol na Lagoa de Araruama" loading="lazy">
+          <div class="near-body">
+            <span class="near-dist"><svg class="i"><use href="#i-car"/></svg>Na própria cidade</span>
+            <h3>Lagoa de Araruama</h3>
+            <p>Uma das maiores lagoas de água salgada do mundo, com águas calmas e um pôr do sol inesquecível.</p>
+          </div>
+          <small class="near-credit">Foto: <a href="https://commons.wikimedia.org/wiki/File:LAGOA_DE_ARARUAMA_RIO_DE_JANEIRO_BRAZIL.jpg" target="_blank" rel="noopener">Delano Campello</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></small>
+        </article>
+        <article class="near-card" data-reveal>
+          <img src="assets/img/fotos/perto_massambaba-800.webp" alt="Praia de Massambaba, com areia branca e mar azul" loading="lazy">
+          <div class="near-body">
+            <span class="near-dist"><svg class="i"><use href="#i-car"/></svg>17 km · cerca de 25 min</span>
+            <h3>Praia Seca e Massambaba</h3>
+            <p>Mar aberto e quilômetros de areia branca entre o oceano e a restinga preservada.</p>
+          </div>
+          <small class="near-credit">Foto: <a href="https://commons.wikimedia.org/wiki/File:Praia_de_Massambaba,_Figueira,_Arraial_do_Cabo.jpg" target="_blank" rel="noopener">Vinícius94</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></small>
+        </article>
+        <article class="near-card near-info" data-reveal>
+          <svg class="i"><use href="#i-map-pin"/></svg>
+          <h3>Vindo do Rio de Janeiro?</h3>
+          <p>São cerca de <b>120 km</b>, umas <b>2 horas de carro</b> sem trânsito até Araruama.</p>
+          <a class="where" href="https://www.google.com/maps/search/?api=1&amp;query=Condom%C3%ADnio%20Bar%C3%A3o%20do%20Monte%20Belo%20Araruama" target="_blank" rel="noopener">Abrir no mapa</a>
+        </article>
+      </div>
+      <p class="near-note">Distâncias e tempos aproximados de carro a partir do centro de Araruama, sem trânsito (cálculo pelo OpenStreetMap). Em feriados e na alta temporada, o trânsito na região aumenta.</p>
+    </div>
+  </section>
+
   <!-- ================= RESERVAR ================= -->
   <section class="book section" id="reservar">
     <div class="container">
@@ -418,6 +421,7 @@
         <p class="eyebrow" data-reveal>Reservas</p>
         <h2 class="h2" data-reveal>Escolha <em>como ficar</em></h2>
         <p class="lead" data-reveal>Reserva direta com quem cuida da casa: atendimento pelo WhatsApp, contrato claro e sem taxa de plataforma.</p>
+        <button class="btn btn-line share-btn" data-share data-reveal><svg class="i"><use href="#i-message-circle"/></svg> Enviar o site para a família</button>
       </div>
       <div class="options">
         <article class="option option-main" data-reveal>
@@ -475,7 +479,7 @@
   <div class="container footer-inner">
     <a class="brand" href="#topo"><img src="assets/img/marca.png" alt="" width="48" height="21"><span>Casa Família</span></a>
     <p>Casa de temporada em Araruama/RJ · Fotos reais da casa</p>
-    <p class="footer-small">© 2026 Casa Família · Ícones: Lucide · Música do vídeo: “Inside You”, lemonmusicstudio (Pixabay)</p>
+    <p class="footer-small">© 2026 Casa Família · Ícones: Lucide</p>
   </div>
 </footer>
 
@@ -491,7 +495,6 @@
 
 <script src="assets/vendor/gsap.min.js" defer></script>
 <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script src="assets/vendor/lenis.min.js" defer></script>
-<script src="assets/js/main.js?v=3" defer></script>
+<script src="assets/js/main.js?v=5" defer></script>
 </body>
 </html>
