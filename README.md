@@ -2,7 +2,7 @@
 
 Site da **Casa Família**, casa de temporada em Araruama/RJ (Região dos Lagos).
 
-**No ar:** https://nathang546-cmyk.github.io/casa-familia-araruama/
+**No ar:** https://casafamiliaararuama.com.br/ (domínio no Registro.br, hospedagem gratuita no GitHub Pages)
 
 ## O que tem no site
 
@@ -40,7 +40,7 @@ Depois abra http://localhost:8080 no navegador.
 
 ## Publicar
 
-O site é publicado pelo **GitHub Pages** a partir da branch `main`. Qualquer alteração enviada para a `main` entra no ar em 1 ou 2 minutos.
+O site é publicado pelo **GitHub Pages** a partir da branch `main`, no domínio próprio definido no arquivo `CNAME` (os registros DNS ficam no painel do Registro.br). Qualquer alteração enviada para a `main` entra no ar em 1 ou 2 minutos.
 
 Para trabalhar em equipe: crie uma branch, faça as alterações e abra um Pull Request. Assim as outras pessoas revisam antes de ir para o ar.
 
