@@ -19,13 +19,9 @@
   const F = (id, cat, t, w, h) => ({ id, cat, t, w, h });
   const FOTOS = [
     F('fachada_nova', 'casa', 'Fachada', 1280, 960), F('varanda_nova', 'casa', 'Varanda e garagem', 1280, 960),
-    F('varanda_nova2', 'casa', 'Varanda com garagem coberta', 960, 1280), F('varanda', 'casa', 'Varanda', 1600, 900),
-    F('varanda3', 'casa', 'Vista da varanda', 505, 647),
-    F('sala', 'casa', 'Sala de estar', 1600, 900), F('sala2', 'casa', 'Sala e jantar integrados', 505, 647),
-    F('jantar', 'casa', 'Mesa de jantar', 505, 647), F('aparador', 'casa', 'Hall de entrada', 505, 647),
-    F('hall', 'casa', 'Sala e hall', 1600, 900), F('cozinha', 'casa', 'Cozinha', 1152, 1536),
+    F('varanda_nova2', 'casa', 'Varanda com garagem coberta', 960, 1280), F('sala', 'casa', 'Sala de estar', 1600, 900), F('sala2', 'casa', 'Sala e jantar integrados', 505, 647),
+    F('jantar', 'casa', 'Mesa de jantar', 505, 647), F('hall', 'casa', 'Sala e hall', 1600, 900), F('cozinha', 'casa', 'Cozinha', 1152, 1536),
     F('cozinha2', 'casa', 'Cooktop com coifa', 1536, 1152), F('cozinha3', 'casa', 'Mesa da cozinha', 1152, 1536),
-    F('cozinha4', 'casa', 'Bancada da cozinha', 1152, 1536), F('bikes', 'casa', 'Bicicletas e stand up paddle', 505, 647),
     F('suite', 'quartos', 'Suíte', 505, 647), F('suite2', 'quartos', 'Suíte', 505, 647),
     F('q2', 'quartos', 'Quarto 2', 505, 647), F('q2b', 'quartos', 'Quarto 2 com escrivaninha', 505, 647),
     F('q3', 'quartos', 'Quarto 3', 1152, 1536), F('q3b', 'quartos', 'Quarto 3', 1152, 1536),
@@ -34,25 +30,22 @@
     F('suite_banho', 'banheiros', 'Banheiro da suíte', 720, 1280), F('suite_banho2', 'banheiros', 'Box do banheiro da suíte', 720, 1280),
     F('banho', 'banheiros', 'Banheiro social', 1152, 1536), F('banho2', 'banheiros', 'Banheiro social', 1152, 1536),
     F('edicula_banho', 'banheiros', 'Banheiro da edícula', 720, 1280),
-    F('piscina', 'lazer', 'Piscina e área gourmet', 1280, 960), F('piscina_hero', 'lazer', 'Área externa', 1280, 760),
+    F('piscina_hero', 'lazer', 'Área externa', 1280, 760),
     F('piscina2', 'lazer', 'Piscina privativa', 1080, 1440), F('capa', 'lazer', 'Cascata da piscina', 1080, 1440),
     F('piscina3', 'lazer', 'Piscina e mesas externas', 1080, 1440), F('piscina4', 'lazer', 'Mesa com ombrelone', 1080, 1440),
     F('gourmet', 'lazer', 'Área gourmet com churrasqueira', 1080, 1440), F('gourmet2', 'lazer', 'Mesa externa', 1080, 1440),
-    F('chopeira', 'lazer', 'Chopeira e máquina de gelo', 1080, 1440), F('jardim', 'lazer', 'Jardim de inverno', 1080, 1440),
+    F('jardim', 'lazer', 'Jardim de inverno', 1080, 1440),
     F('jardim2', 'lazer', 'Cantinho do café', 1080, 1440), F('lavanderia', 'lazer', 'Lavanderia', 1080, 1440),
-    F('lavanderia2', 'lazer', 'Lavanderia', 1080, 1440),
     F('condo_quiosques', 'condominio', 'Piscina com quiosques', 960, 1280), F('condo_piscina', 'condominio', 'Piscinas do condomínio', 720, 1280),
     F('quadra', 'condominio', 'Quadra poliesportiva', 960, 1280), F('campo', 'condominio', 'Campo de futebol', 1280, 960),
-    F('playground', 'condominio', 'Playground', 960, 1280), F('condo_parquinho', 'condominio', 'Playground ao entardecer', 960, 1280),
-    F('condo_jardim', 'condominio', 'Jardins', 960, 1280), F('condo_jardim2', 'condominio', 'Jardins e alamedas', 960, 1280),
-    F('condo_alameda', 'condominio', 'Alameda arborizada', 720, 1280), F('condo_pergolado', 'condominio', 'Pergolado', 960, 1280),
-    F('condo_gazebo', 'condominio', 'Área verde', 720, 1280), F('condo_palmeiras', 'condominio', 'Palmeiras ao pôr do sol', 960, 1280),
+    F('playground', 'condominio', 'Playground', 960, 1280), F('condo_jardim', 'condominio', 'Jardins', 960, 1280), F('condo_alameda', 'condominio', 'Alameda arborizada', 720, 1280), F('condo_pergolado', 'condominio', 'Pergolado', 960, 1280),
+    F('condo_palmeiras', 'condominio', 'Palmeiras ao pôr do sol', 960, 1280),
     F('condo_sunset', 'condominio', 'Pôr do sol na piscina', 960, 1280),
   ];
   const byId = Object.fromEntries(FOTOS.map(f => [f.id, f]));
   const src = (id, size) => `assets/img/fotos/${id}-${size}.webp`;
-  const DESTAQUES = ['piscina', 'sala', 'piscina2', 'cozinha', 'q3', 'gourmet', 'fachada_nova', 'capa', 'suite', 'banho2',
-    'edicula', 'chopeira', 'condo_quiosques', 'jardim', 'cozinha2', 'condo_sunset'];
+  const DESTAQUES = ['piscina_hero', 'sala', 'piscina2', 'cozinha', 'q3', 'gourmet', 'fachada_nova', 'capa', 'suite', 'banho2',
+    'edicula', 'varanda_nova', 'condo_quiosques', 'jardim', 'cozinha2', 'condo_sunset'];
   const ordem = [...DESTAQUES.map(id => byId[id]), ...FOTOS.filter(f => !DESTAQUES.includes(f.id))];
 
   /* ---------------- lightbox ---------------- */
