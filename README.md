@@ -9,7 +9,7 @@ Site da **Casa Família**, casa de temporada em Araruama/RJ (Região dos Lagos).
 - **Abertura** com a foto da piscina e o nome animado.
 - **Tour pela casa** (10 ambientes): no computador, os textos rolam à esquerda e a foto troca dentro de um arco fixo à direita (o mesmo formato da logo), com uma cortina; no celular, os ambientes aparecem em sequência. A rolagem é sempre a normal do navegador: nada trava a tela.
 - **Galeria** com filtros (casa, quartos, banheiros, lazer, condomínio) e foto ampliada.
-- **Comodidades**, **lazer do condomínio**, **o que fazer em Araruama** (lagoa, praias, esportes, onde comer e passeios, com distâncias para um bate-volta), **opções de reserva** (casa toda ou só a edícula), botão para enviar o site à família e **contato**.
+- **Comodidades**, **lazer do condomínio**, **o que fazer em Araruama** (lagoa, praias, esportes, onde comer e passeios, com distâncias para um bate-volta), **opções de reserva** (casa toda ou só a edícula), botão para enviar o site à família, **perguntas frequentes** (baseadas no contrato) e **contato**.
 - Botões de WhatsApp com mensagem pronta e prévia bonita quando o link é compartilhado.
 
 Funciona no celular e no computador. Para quem prefere menos movimento (configuração do sistema), as animações são desligadas e o conteúdo aparece normalmente.

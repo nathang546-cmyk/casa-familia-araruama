@@ -18,8 +18,9 @@
   /* ---------------- fotos ---------------- */
   const F = (id, cat, t, w, h) => ({ id, cat, t, w, h });
   const FOTOS = [
-    F('fachada', 'casa', 'Fachada', 1600, 900), F('varanda', 'casa', 'Varanda', 1600, 900),
-    F('varanda2', 'casa', 'Varanda com móveis de madeira', 505, 647), F('varanda3', 'casa', 'Vista da varanda', 505, 647),
+    F('fachada_nova', 'casa', 'Fachada', 1280, 960), F('varanda_nova', 'casa', 'Varanda e garagem', 1280, 960),
+    F('varanda_nova2', 'casa', 'Varanda com garagem coberta', 960, 1280), F('varanda', 'casa', 'Varanda', 1600, 900),
+    F('varanda3', 'casa', 'Vista da varanda', 505, 647),
     F('sala', 'casa', 'Sala de estar', 1600, 900), F('sala2', 'casa', 'Sala e jantar integrados', 505, 647),
     F('jantar', 'casa', 'Mesa de jantar', 505, 647), F('aparador', 'casa', 'Hall de entrada', 505, 647),
     F('hall', 'casa', 'Sala e hall', 1600, 900), F('cozinha', 'casa', 'Cozinha', 1152, 1536),
@@ -50,7 +51,7 @@
   ];
   const byId = Object.fromEntries(FOTOS.map(f => [f.id, f]));
   const src = (id, size) => `assets/img/fotos/${id}-${size}.webp`;
-  const DESTAQUES = ['piscina', 'sala', 'piscina2', 'cozinha', 'q3', 'gourmet', 'fachada', 'capa', 'suite', 'banho2',
+  const DESTAQUES = ['piscina', 'sala', 'piscina2', 'cozinha', 'q3', 'gourmet', 'fachada_nova', 'capa', 'suite', 'banho2',
     'edicula', 'chopeira', 'condo_quiosques', 'jardim', 'cozinha2', 'condo_sunset'];
   const ordem = [...DESTAQUES.map(id => byId[id]), ...FOTOS.filter(f => !DESTAQUES.includes(f.id))];
 
