@@ -211,6 +211,8 @@
   if (!window.gsap || !window.ScrollTrigger || !motion) return;
 
   gsap.registerPlugin(ScrollTrigger);
+  // celular: não recalcula tudo quando a barra de endereço aparece/some (evita pulos no tour)
+  ScrollTrigger.config({ ignoreMobileResize: true });
   root.classList.add('gsap-ready');
 
   if (window.Lenis) {
