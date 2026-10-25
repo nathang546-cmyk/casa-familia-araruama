@@ -30,7 +30,6 @@
     F('suite_banho', 'banheiros', 'Banheiro da suíte', 720, 1280), F('suite_banho2', 'banheiros', 'Box do banheiro da suíte', 720, 1280),
     F('banho', 'banheiros', 'Banheiro social', 1152, 1536), F('banho2', 'banheiros', 'Banheiro social', 1152, 1536),
     F('edicula_banho', 'banheiros', 'Banheiro da edícula', 720, 1280),
-    F('piscina_hero', 'lazer', 'Área externa', 1280, 760),
     F('piscina2', 'lazer', 'Piscina privativa', 1080, 1440), F('capa', 'lazer', 'Cascata da piscina', 1080, 1440),
     F('piscina3', 'lazer', 'Piscina e mesas externas', 1080, 1440), F('piscina4', 'lazer', 'Mesa com ombrelone', 1080, 1440),
     F('gourmet', 'lazer', 'Área gourmet com churrasqueira', 1080, 1440), F('gourmet2', 'lazer', 'Mesa externa', 1080, 1440),
@@ -44,7 +43,7 @@
   ];
   const byId = Object.fromEntries(FOTOS.map(f => [f.id, f]));
   const src = (id, size) => `assets/img/fotos/${id}-${size}.webp`;
-  const DESTAQUES = ['piscina_hero', 'sala', 'piscina2', 'cozinha', 'q3', 'gourmet', 'fachada_nova', 'capa', 'suite', 'banho2',
+  const DESTAQUES = ['sala', 'piscina2', 'cozinha', 'q3', 'gourmet', 'fachada_nova', 'capa', 'suite', 'banho2',
     'edicula', 'varanda_nova', 'condo_quiosques', 'jardim', 'cozinha2', 'condo_sunset'];
   const ordem = [...DESTAQUES.map(id => byId[id]), ...FOTOS.filter(f => !DESTAQUES.includes(f.id))];
 
