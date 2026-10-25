@@ -51,22 +51,56 @@
   /* ---------------- lightbox ---------------- */
   const lb = $('[data-lightbox]');
   const lbImg = $('[data-lb-img]');
+  const lbVideo = $('[data-lb-video]');
+  const lbCredit = $('[data-lb-credit]');
   let lbList = [], lbIndex = 0, lastFocus = null;
+  // fotos da casa têm id; fotos dos lugares trazem o caminho em img; vídeos trazem o id do YouTube em yt
+  const srcOf = (f, size) => f.img ? `${f.img}-${size}.webp` : src(f.id, size);
+  const link = (texto, href) => {
+    if (!href) return document.createTextNode(texto);
+    const a = document.createElement('a');
+    a.href = href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = texto;
+    return a;
+  };
+  const renderCredito = f => {
+    lbCredit.replaceChildren();
+    lbCredit.hidden = !f.a;
+    if (!f.a) return;
+    if (f.yt) {
+      lbCredit.append('Vídeo: ', link(f.a, `https://www.youtube.com/watch?v=${f.yt}`), ' · YouTube');
+    } else {
+      lbCredit.append('Foto: ', link(f.a, f.p), ' · ', link(f.l || 'Wikimedia Commons', f.lu));
+    }
+  };
   const renderLB = () => {
     const f = lbList[lbIndex];
-    lbImg.src = src(f.id, 1600);
-    lbImg.alt = f.t;
+    lbVideo.replaceChildren();
+    lbVideo.hidden = !f.yt;
+    lbImg.hidden = !!f.yt;
+    if (f.yt) {
+      const ifr = document.createElement('iframe');
+      ifr.src = `https://www.youtube-nocookie.com/embed/${f.yt}?rel=0`;
+      ifr.title = f.t;
+      ifr.allow = 'accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+      ifr.allowFullscreen = true;
+      ifr.referrerPolicy = 'strict-origin-when-cross-origin'; // o YouTube recusa o player sem saber o site de origem (erro 153)
+      lbVideo.appendChild(ifr);
+    } else {
+      lbImg.src = srcOf(f, 1600);
+      lbImg.alt = f.t;
+    }
     $('[data-lb-cap]').textContent = f.t;
+    renderCredito(f);
     $('[data-lb-count]').textContent = `${lbIndex + 1} / ${lbList.length}`;
     [lbList[(lbIndex + 1) % lbList.length], lbList[(lbIndex - 1 + lbList.length) % lbList.length]]
-      .forEach(n => { const im = new Image(); im.src = src(n.id, 1600); });
+      .filter(n => !n.yt).forEach(n => { const im = new Image(); im.src = srcOf(n, 1600); });
   };
   const openLB = (list, i) => {
     lbList = list; lbIndex = i; lastFocus = document.activeElement;
     renderLB(); lb.hidden = false; document.body.style.overflow = 'hidden';
     $('[data-lb-close]').focus();
   };
-  const closeLB = () => { lb.hidden = true; document.body.style.overflow = ''; lastFocus && lastFocus.focus(); };
+  const closeLB = () => { lb.hidden = true; lbVideo.replaceChildren(); document.body.style.overflow = ''; lastFocus && lastFocus.focus(); };
   const stepLB = d => { lbIndex = (lbIndex + d + lbList.length) % lbList.length; renderLB(); };
   $('[data-lb-close]').addEventListener('click', closeLB);
   $('[data-lb-prev]').addEventListener('click', () => stepLB(-1));
@@ -135,6 +169,32 @@
       b.addEventListener('click', () => openLB(list, i));
       box.appendChild(b);
     });
+  });
+
+  /* ---------------- galerias dos lugares perto da casa ---------------- */
+  const LUGARES = window.LUGARES || {};
+  $$('[data-lugar]').forEach(el => {
+    const lista = LUGARES[el.dataset.lugar];
+    if (!lista) return;
+    const iVideo = lista.findIndex(f => f.yt);
+    if (el.matches('.near-card')) {
+      const nFotos = lista.filter(f => !f.yt).length;
+      el.classList.add('is-clickable');
+      el.tabIndex = 0;
+      el.setAttribute('role', 'button');
+      el.setAttribute('aria-label', `Ver fotos: ${$('h3', el).textContent}`);
+      const chips = document.createElement('div');
+      chips.className = 'near-more';
+      chips.innerHTML = (nFotos > 1 ? `<span><svg class="i"><use href="#i-images"/></svg>${nFotos} fotos</span>` : '') +
+        (iVideo >= 0 ? '<button type="button" data-video><svg class="i"><use href="#i-play"/></svg>Vídeo</button>' : '');
+      el.appendChild(chips);
+      const v = $('[data-video]', chips);
+      v && v.addEventListener('click', e => { e.stopPropagation(); openLB(lista, iVideo); });
+      el.addEventListener('keydown', e => {
+        if (e.target === el && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openLB(lista, 0); }
+      });
+    }
+    el.addEventListener('click', e => { if (!e.target.closest('a')) openLB(lista, 0); });
   });
 
   /* ---------------- cabeçalho e menu ---------------- */
