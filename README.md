@@ -24,7 +24,7 @@ Funciona no celular e no computador. Para quem prefere menos movimento (configur
 | Fotos da galeria (lista, legendas e categorias) | `assets/js/main.js` (lista `FOTOS`) |
 | Arquivos de foto | `assets/img/fotos/` (cada foto tem duas versões: `nome-800.webp` e `nome-1600.webp`) |
 | Seção "O que fazer em Araruama" (fotos, restaurantes, passeios e créditos) | `index.html`, bloco `ARREDORES` |
-| Prévia do link no WhatsApp/redes | `assets/img/compartilhar.jpg` (1200×630) |
+| Prévia do link no WhatsApp/redes | `assets/img/compartilhar-2.jpg` (1200×630; troque o nome do arquivo quando mudar a imagem, para o WhatsApp não usar a prévia antiga) |
 
 Depois de alterar o CSS ou o JavaScript, aumente o número da versão nos links do `index.html` (`style.css?v=1` → `?v=2`, `main.js?v=1` → `?v=2`) para os visitantes receberem a versão nova na hora.
 
